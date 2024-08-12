@@ -1,0 +1,37 @@
+<!---Esto es lo 1rtro que se debe declara; -->
+{% extends 'base/base.html' %}
+{% block content %}
+  <!--Agregamos los mensaje que se mostraran en la vista de los datos.-->
+  <div class="mt-5 p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+    <h3><p style="color: hsl(120, 97%, 63%);">Tareas Finalizadas</p></h3>
+  </div>
+  
+  <table  class="table table-bordered border-primary mt-3">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Título de la Tarea</th>
+        <th scope="col">Description</th>
+        <th scope="col">F. Tarea Creada</th>
+        <th scope="col">F. Tarea Finalizada</th>
+        <th scope="col">Autor</th>
+      </tr>
+    </thead>
+    <tbody  class="table-group-divider">
+      {% for task in tasks %}
+        <th scope="row">{{task.id}}</th>
+        <!--Creamos una condicional para ver SI la tarea es importante.-->
+          {% if task.important %}
+          <strong><td>{{task.title}}</td></strong>
+          {% else %}
+          <td>{{task.title}}</td>
+          {% endif %}
+          <td><a href="{% url 'task_detail' task.id %}">{{task.description}}</a></td>
+          <td>{{task.created}}</td>
+          <td>{{task.datecompleted|date:'M j Y H:i'}}</td>
+          <td>{{task.user}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

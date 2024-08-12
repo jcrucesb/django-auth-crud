@@ -1,0 +1,16 @@
+<!---Esto es lo 1rtro que se debe declara; -->
+{% extends 'base/base.html' %}
+{% block content %}
+<h1>Autenticar</h1>
+<!--Agregamos los mensaje que se mostraran en la vista de los datos.-->
+<div class="mb-2 p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+  <h3><p style="color: hsl(120, 97%, 63%);">LOGUIN DE ACCESO </p></h3>
+</div>
+{{error}}
+<form action="" method="POST">
+    {%csrf_token%}
+    {{autenticar.as_p}}
+    <button type="submit" class="btn btn-success mt-2">ENVIAR</button>
+    <button type="button" class="btn btn-danger mt-2">CANCELAR</button>
+  </form>
+{% endblock %}

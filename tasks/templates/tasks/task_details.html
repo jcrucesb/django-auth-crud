@@ -1,0 +1,38 @@
+<!---Esto es lo 1rtro que se debe declara; -->
+{% extends 'base/base.html' %}
+{% block content %}
+<h1>TASK</h1>
+<!--Agregamos los mensaje que se mostraran en la vista de los datos.-->
+<div class="mb-2 p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+  <h3><p style="color: hsl(120, 97%, 63%);">TASK DETAIL</p></h3>
+</div>
+<table  class="table table-bordered border-primary mt-3">
+  <thead>
+    <tr>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody  class="table-group-divider">
+      <!--Creamos una condicional para ver SI la tarea es importante.-->
+        <strong><td>{{task}}</td></strong>
+      </tr>
+  </tbody>
+</table>
+{{error}}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-success mt-2">ACTUALIZAR</button>
+  </form>
+<!--Mandamos los datos del formulario de la propiedad created. La tarea fuerealizada con la 
+fecha actual en la BD-->
+  <form class="mt-2" action="{% url 'task_complete' task.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-info mt-2">TAREA COMPLETADA</button>
+  </form>
+  <!--Eliminar una tarea, solo lo puede hacer el usuario logueado a quien corresponda dicha tarea.-->
+  <form class="mt-2" action="{% url 'task_delete' task.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger mt-2">ELIMINAR TAREA</button>
+  </form>
+{% endblock %}

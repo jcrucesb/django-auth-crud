@@ -1,0 +1,18 @@
+<!---Esto es lo 1rtro que se debe declara; -->
+{% extends 'base/base.html' %}
+{% block content %}
+<h1>Página Crear Tareas.</h1>
+<!--Agregamos los mensaje que se mostraran en la vista de los datos.-->
+<div class=" mb-3 p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+  <h3><p style="color: hsl(120, 97%, 63%);">Puedes Crear Tareas</p></h3>
+</div>
+<!--Recordar qie si no se pasa ruta o url al action del form, se reciben los datos en la misma 
+página, por ende, en tasks/create_tasks.-->
+{{error}}
+<form action="" method="POST">
+  {%csrf_token%}
+  {{form_create_tasks.as_p}}
+    <button type="submit" class="btn btn-success mt-2">ENVIAR</button>
+    <button type="button" class="btn btn-danger mt-2">CANCELAR</button>
+</form>
+{% endblock %}

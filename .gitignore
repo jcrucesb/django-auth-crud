@@ -1,0 +1,4 @@
+#Todos lo que queremos que no suba al deploy.
+db.sqlite3
+venv
+__pycache__
